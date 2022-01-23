@@ -24,7 +24,7 @@ class AuthController extends Controller
     public function login(): JsonResponse
     {
         if (!$token = auth()->attempt(request(['email', 'password']))) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return abort(401, 'Unauthorized.');
         }
 
         return $this->respondWithToken($token);
